@@ -1,0 +1,112 @@
+/* Uber Grid changes */
+
+#home-middle div.uber-grid div.uber-grid-cell-title{
+    /*text-shadow: 0px 0px 20px #000, 0px 0px 1px #000;  */
+    /*text-shadow: 0px 0px 20px rgba(0,0,0,28), 0px 0px 1px rgba(0,0,0,28);  */
+    text-shadow: 0px 0px 20px rgba(0,0,0,28);
+    /*text-shadow: -1px -1px rgba(0,0,0,28), 1px 1px rgba(0,0,0,28), 1px -1px rgba(0,0,0,28), -1px 1px rgba(0,0,0,28);*/
+    text-transform: uppercase !important;
+    overflow-wrap: normal;
+    word-wrap:break-word;
+}
+
+#header .menu .menu-item a {
+  font-family: 'IM Fell DW Pica', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 24px;
+}
+
+/*.uber-grid > div .uber-grid-cell-title strong{
+    text-transform: capitalize !important;
+}*/
+
+/* Product Catalogue Changes */
+
+ul.products li.product{
+    text-align: center;
+}
+
+ul.products li.product h3{
+    font-weight: bold !important;
+}
+
+ul.products mark.count {
+    display: none !important;
+}
+
+ul.products p.stock.in-stock {
+    display: none !important;
+}
+
+ul.products li.product img.attachment-shop_catalog {
+    height: auto !important;
+    width: auto !important;
+    max-height: 200px !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/** Related Products Changes */
+
+div.related.products ul.products li.product img.attachment-shop_catalog {
+    height: auto !important;
+    width: auto !important;
+    max-height: 120px !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+div.related.products ul.products li.product{
+    width: 45% !important;
+    padding-left: auto;
+    padding-right: auto;
+    /*width: auto;*/
+}
+
+/* centre free freight image in page */
+img.free_freight_img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block
+}
+
+/* Free shipping banner */
+.free_shipping_banner_container {
+  width: 100%;
+  max-width: 960px;
+  height: 44px;
+  display: block;
+  margin: 0 auto;
+  text-align:right;
+  position:relative;
+}
+
+.free_shipping_banner {
+  text-transform: uppercase;
+  position: absolute;
+  right: 20px;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  /*font-family: 'Yanone Kaffeesatz', 'Teko', sans-serif;*/
+  font-weight: 500;
+  font-size:36px;
+  color:#F60074;
+}
+
+.im-fell,
+.im-fell p
+.im-fell h2 {
+  font-family: 'IM Fell DW Pica', 'Helvetica Neue', Helvetica, sans-serif !important;
+}
+
+.page-template-page_product_grid hr{
+  color: #ffffff;
+  opacity: 0;
+}
+
+.design-range .design-range-image {
+  width: 50%;
+}
+.design-range .design-range-description {
+  min-width: 50%;
+}
