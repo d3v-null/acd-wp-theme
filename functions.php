@@ -259,16 +259,20 @@ function derwent_add_international_checkout_notice($address_felds=null) {
         $base_location = wc_get_base_location();
         $base_country = apply_filters( 'woocommerce_countries_base_country', $base_location['country'] );
         if( $customer->get_country() != $base_country){
-            wc_print_notice( __( 'International customers please note that when you place
-your order we will contact you with a qyote to ship your items and we will only charge
-your credit card once you have approved this charge. Thank you for your understanding',
-                'woocommerce' ), 'notice' );
-            error_log("printing message");
+            global $derwent_printed_customer_message;
+            if(!isset($derwent_printed_customer_message)){
+                wc_print_notice( __( 'International customers please note that when you '
+                    .'place your order we will contact you with a qyote to ship your items '
+                    .'and we will only charge your credit card once you have approved this '
+                    .'charge. Thank you for your understanding', 'woocommerce' ), 'notice' );
+                $derwent_printed_customer_message = true;
+            }
+            // error_log("printing message");
         } else {
-            error_log("no message: domestic");
+            // error_log("no message: domestic");
         }
     } else {
-        error_log("no message: no WC_Customer");
+        // error_log("no message: no WC_Customer");
     }
     return $address_felds;
 }
