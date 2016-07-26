@@ -1,0 +1,16 @@
+{
+  "uploadOnSave": false,
+  "useAtomicWrites": false,
+  "deleteLocal": false,
+  "hostname": "smarternine.com.au",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "username": "marterni",
+  "password": "5FdV6E3HC3gL3aW35i",
+  "watch": [],
+  "transport": "ftp",
+  "port": "21",
+  "target": "www/wp-content/themes/legacy"
+}

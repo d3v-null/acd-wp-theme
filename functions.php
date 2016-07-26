@@ -235,16 +235,23 @@ add_action('init', 'derwent_google_fonts');
 /* <div style="width: 100%;max-width: 960px;display: block;margin: 0 auto;"><img class="free_freight_img" src="http://www.annachandler.com/wp-content/uploads/free-shipping-banner2.jpg"/ width="960" height="44" alt_text="<?php derwent_display_free_shipping_text();
 ?>"></div> */
 
+function derwent_customer_is_domestic() {
+    global $woocommerce; $customer = $woocommerce->customer;
+    $base_location = wc_get_base_location();
+    $base_country = apply_filters( 'woocommerce_countries_base_country', $base_location['country'] );
+    return $customer->get_country() == $base_country;
+}
+
 function derwent_display_free_shipping_banner() {
-    ?>
-    <div class="free_shipping_banner_container">
-        <span class="free_shipping_banner">
-            <?php
-            derwent_display_free_shipping_text();
-            ?>
-        </span>
-    </div>
-    <?php
+    if(derwent_customer_is_domestic()){?>
+        <div class="free_shipping_banner_container">
+            <span class="free_shipping_banner">
+                <?php
+                derwent_display_free_shipping_text();
+                ?>
+            </span>
+        </div>
+    <?php  }
 }
 
 /** print woocommerce shipping notice */
@@ -254,25 +261,18 @@ add_filter( 'woocommerce_shipping_fields', 'derwent_add_international_checkout_n
 // add_action( 'woocommerce_review_order_before_payment', 'derwent_add_international_checkout_notice', 11);
 // add_action( 'init', 'derwent_add_international_checkout_notice');
 function derwent_add_international_checkout_notice($address_felds=null) {
-    if(class_exists('WC_Customer')){
-        global $woocommerce; $customer = $woocommerce->customer;
-        $base_location = wc_get_base_location();
-        $base_country = apply_filters( 'woocommerce_countries_base_country', $base_location['country'] );
-        if( $customer->get_country() != $base_country){
-            global $derwent_printed_customer_message;
-            if(!isset($derwent_printed_customer_message)){
-                wc_print_notice( __( 'International customers please note that when you '
-                    .'place your order we will contact you with a qyote to ship your items '
-                    .'and we will only charge your credit card once you have approved this '
-                    .'charge. Thank you for your understanding', 'woocommerce' ), 'notice' );
-                $derwent_printed_customer_message = true;
-            }
-            // error_log("printing message");
-        } else {
-            // error_log("no message: domestic");
+    if( !derwent_customer_is_domestic() ){
+        global $derwent_printed_customer_message;
+        if(!isset($derwent_printed_customer_message)){
+            wc_print_notice( __( 'International customers please note that when you '
+                .'place your order we will contact you with a quote to ship your items '
+                .'and we will only charge your credit card once you have approved this '
+                .'charge. Thank you for your understanding', 'woocommerce' ), 'notice' );
+            $derwent_printed_customer_message = true;
         }
+        // error_log("printing message");
     } else {
-        // error_log("no message: no WC_Customer");
+        // error_log("no message: domestic");
     }
     return $address_felds;
 }
